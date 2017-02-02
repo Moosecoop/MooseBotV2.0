@@ -1,18 +1,21 @@
 const commando = require('discord.js-commando');
 
-class purgeCommand extends commando.Command {
+class PurgeCommand extends commando.Command {
     constructor(client) {
       super(client, {
         name: 'purge',
         group: 'moderation',
         memberName: 'purge',
-        description: 'purges the last 10 messages'
+        description: 'purges the last 25 messages'
       });
     }
 
     async run(message, args) {
-      message.reply("Purge Command Not Done");
+      let usrMngMsgs = message.channel.permissionsFor(message.member).hasPermission("MANAGE_MESSAGES");
+      if(usrMngMsgs) {
+        channel.bulkDelete(25);
+      }
     }
 }
 
-module.exports = DiceRollCommand;
+module.exports = PurgeCommand;
